@@ -1,6 +1,6 @@
 <?php
 
-namespace Stevenhudakhc\Spatietestground\Models;
+namespace Stevenhudakhc\Merjjatomiccomponents\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
