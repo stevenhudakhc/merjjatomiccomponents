@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    // a row of content, replaces home item
+    public function up()
+    {
+        Schema::create('organism_homes', function (Blueprint $table) {
+            $table->id();
+
+            // add fields
+            $table->string('title');
+            $table->string('body');
+            $table->mediumText('structure_json'); // JSON encoding
+            $table->string('locale', 2)->index('locale');
+            $table->foreignId('organization_id')->constrained();
+            $table->foreignId('program_id')->constrained();
+            $table->timestamps();
+        });
+    }
+};
