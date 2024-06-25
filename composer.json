@@ -36,6 +36,7 @@
     "autoload": {
         "psr-4": {
             "Stevenhudakhc\\Merjjatomiccomponents\\": "src/",
+            "Stevenhudakhc\\Merjjatomiccomponents\\Models\\": "Models/",
             "Stevenhudakhc\\Merjjatomiccomponents\\Database\\Factories\\": "database/factories/"
         }
     },
