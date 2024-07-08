@@ -13,7 +13,7 @@ class Mediaimage extends Model
     //
     use HasFactory;
 
-    protected $table = 'media_images';
+    protected $table = 'atom_images';
 
     protected $fillable = ['id', 'title', 'type', 'url_desktop', 'url_mobile', 'alt', 'program_id', 'organization_id'];
 

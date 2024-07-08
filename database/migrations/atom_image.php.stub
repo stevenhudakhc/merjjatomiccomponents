@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('alt');
             $table->string('title');
             $table->string('type');
+            $table->integer('order_list')->nullable()->default(0);
+            $table->foreignId('program_id')->constrained();
 
             $table->foreignId('organization_id')->constrained();
             $table->timestamps();

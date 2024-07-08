@@ -15,7 +15,7 @@ class Organismhome extends Model
 
     protected $table = 'organism_homes';
 
-    protected $fillable = ['id', 'title', 'body', 'structure_json'];
+    protected $fillable = ['id', 'title', 'body', 'locale', 'organization_id', 'program_id', 'structure_json'];
 
     public function renderHtml()
     {
