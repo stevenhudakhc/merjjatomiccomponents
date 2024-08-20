@@ -136,4 +136,20 @@ class Organismrow extends Model
         return $output_string;
 
     }
+    /*
+        Defines which row types are used in an organism row
+    */
+    public function rowTypes()
+    {
+      $output_array = array(
+        "1-1-1" => "1-1-1",
+        "2-1" => "2-1",
+        "1-2" => "1-2",
+        "3" => "3",
+      );
+
+      return $output_array;
+
+    }
+
 }
