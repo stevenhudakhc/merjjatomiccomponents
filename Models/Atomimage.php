@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 //afterupdated foldername
 // based on https://www.cloudways.com/blog/models-views-laravel/
 
-class Mediaimage extends Model
+class Atomimage extends Model
 {
     //
     use HasFactory;
