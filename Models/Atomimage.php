@@ -24,14 +24,14 @@ class Mediaimage extends Model
 
         $output_string .= '<img ';
         $output_string .= " src='".$url_desktop."' ";
-        $output_string .= " class='d-sm-none d-md-block' ";
+        $output_string .= " class='d-sm-none d-md-block img-fluid' ";
         $output_string .= '/>';
 
         $output_string .= "\n";
 
         $output_string .= '<img ';
         $output_string .= " src='".$url_mobile."' ";
-        $output_string .= " class='d-none d-sm-block d-md-none' ";
+        $output_string .= " class='d-none d-sm-block d-md-none img-fluid' ";
         $output_string .= '/>';
 
         return $output_string;
