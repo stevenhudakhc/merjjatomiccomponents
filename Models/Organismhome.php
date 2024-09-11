@@ -45,7 +45,7 @@ class Organismhome extends Model
 
           $organism_row = $organism_rows[$i];
 
-            $output_string .= "<div class='container'>";
+            $output_string .= "<div class='container-fluid'>";
             $output_string .= "\n";
             $output_string .= "<div class='row'>";
             $output_string .= "\n";
