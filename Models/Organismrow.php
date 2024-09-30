@@ -54,7 +54,7 @@ class Organismrow extends Model
                     $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
                 }
                 if ($row_structure->atoms[$i]->atom_type == 'media_image') { // atomic image
-                  $media_image_insert = AtomImage::where('id', $row_structure->atoms[$i]->id)->first();
+                  $media_image_insert = Atomimage::where('id', $row_structure->atoms[$i]->id)->first();
                   $output_string .= $media_image_insert->renderHtml();
 //                    $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
                 }

@@ -37,7 +37,7 @@ class Organismhome extends Model
         //
         // dd($home_row_array);
 
-        $organism_rows = OrganismRow::whereIn('id', $home_row_array)->get();
+        $organism_rows = Organismrow::whereIn('id', $home_row_array)->get();
 
         $display_type = 'atoms'; // default atoms
 
