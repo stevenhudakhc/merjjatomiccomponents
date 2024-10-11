@@ -27,39 +27,59 @@ class Organismhome extends Model
 
         $output_string = '';
         $row_structure = json_decode($categories->structure_json, TRUE);
-
+        $row_structure_rows = $row_structure['rows'];
         $home_row_array = array();
 
         // export the rows in the JSON
         for($i = 0; $i < count($row_structure['rows']); $i++){
             $home_row_array[] = $row_structure['rows'][$i]['id'];
         }
-        //
-        // dd($home_row_array);
 
-        $organism_rows = Organismrow::whereIn('id', $home_row_array)->get();
+        $organism_rows = OrganismRow::whereIn('id', $home_row_array)->get();
 
         $display_type = 'atoms'; // default atoms
 
-        for ($i = 0; $i < count($organism_rows); $i++) {
+        $rowPresentationType = null;
+        for ($i = 0; $i < count($row_structure_rows); $i++) {
 
-          $organism_row = $organism_rows[$i];
-
-            $output_string .= "<div class='container-fluid'>";
-            $output_string .= "\n";
-            $output_string .= "<div class='row'>";
-            $output_string .= "\n";
-
-            $output_string .= "" . $organism_row->renderHtml();
-            $output_string .= "\n";
-
-
-
-            $output_string .= '</div>';
-            $output_string .= "\n";
-            $output_string .= '</div>';
-            $output_string .= "\n";
+          if(isset($row_structure_rows[$i]['atom_type'])){
+            $rowPresentationType = $row_structure_rows[$i]['atom_type'];
+            $organism_row = OrganismRow::find($row_structure_rows[$i]['id']);
+            $organism_row->save();
           }
+          else{
+            $rowPresentationType = $row_structure_rows[$i]['molecule'];
+
+          }
+
+          if ( $rowPresentationType == "organism_row"){
+              $output_string .= "<div class='container-fluid'>";
+              $output_string .= "\n";
+              $output_string .= "<div class='row'>";
+              $output_string .= "\n";
+
+              $output_string .= "" . $organism_row->renderHtml();
+              $output_string .= "\n";
+              $output_string .= '</div>';
+              $output_string .= "\n";
+              $output_string .= '</div>';
+              $output_string .= "\n";
+          }
+          elseif ( $rowPresentationType == "organism_thirdpartytools"){
+
+            $organismThirdpartytools = OrganismThirdpartytools::all();
+
+            $output_string .= "\n";
+            $output_string .= "   <div class='card-group rounded-0' style=''>";
+
+            for ($i = 0; $i < count($organismThirdpartytools); $i++){
+              $output_string .= "" . $organismThirdpartytools[$i]->renderHtmlCard();
+            }
+
+            $output_string .= "\n";
+            $output_string .= '   </div>'; // end card-group
+          }
+        }
 
 
         return $output_string;

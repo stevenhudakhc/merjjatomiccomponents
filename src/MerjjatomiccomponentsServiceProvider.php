@@ -20,8 +20,10 @@ class MerjjatomiccomponentsServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasMigration('atom_image')
+            ->hasMigration('atom_link')
             ->hasMigration('organism_row')
             ->hasMigration('organism_home')
+            ->hasMigration('organism_thirdpartytools')
             ->hasCommand(MerjjatomiccomponentsCommand::class);
     }
 }

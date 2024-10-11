@@ -51,11 +51,22 @@ class Organismrow extends Model
                 }
                 $output_string .= "<div class='col-sm ".$div_class." p-0'>";
                 if ($row_structure->atoms[$i]->atom_type == 'image') { //image row
+                    $image_src = "https://fpoimg.com/300x300?text=Image%20deleted'";
+                    if (is_null($row_structure->atoms[$i]->src)){
+                      $image_src = $row_structure->atoms[$i]->src;//"https://fpoimg.com/300x300?text=Image%20deleted'";
+                    }
                     $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
                 }
                 if ($row_structure->atoms[$i]->atom_type == 'media_image') { // atomic image
-                  $media_image_insert = Atomimage::where('id', $row_structure->atoms[$i]->id)->first();
-                  $output_string .= $media_image_insert->renderHtml();
+                  $media_image_insert = AtomImage::where('id', $row_structure->atoms[$i]->id)->first();
+                  if (!is_null($media_image_insert)){//check if AtomImage has been deleted
+                    $output_string .= $media_image_insert->renderHtml();
+
+                  }
+                  else{
+                    $output_string .= "<img src='https://fpoimg.com/300x300?text=Image%20deleted' title='".$i."' class='img-fluid w-100'/>";
+
+                  }
 //                    $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
                 }
 
