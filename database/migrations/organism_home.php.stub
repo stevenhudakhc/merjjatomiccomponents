@@ -9,6 +9,8 @@ return new class extends Migration
     // a row of content, replaces home item
     public function up()
     {
+      if (!Schema::hasTable('organism_homes')) {
+
         Schema::create('organism_homes', function (Blueprint $table) {
             $table->id();
 
@@ -23,5 +25,14 @@ return new class extends Migration
 
             $table->timestamps();
         });
+      }
     }
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::drop('organism_homes');
+    }
+
 };

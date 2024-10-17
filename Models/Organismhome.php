@@ -27,6 +27,9 @@ class Organismhome extends Model
 
         $output_string = '';
         $row_structure = json_decode($categories->structure_json, TRUE);
+        if (!isset($row_structure['rows'])){
+            return; // return if all rows are cleared out
+        }
         $row_structure_rows = $row_structure['rows'];
         $home_row_array = array();
 
@@ -34,11 +37,9 @@ class Organismhome extends Model
         for($i = 0; $i < count($row_structure['rows']); $i++){
             $home_row_array[] = $row_structure['rows'][$i]['id'];
         }
-
         $organism_rows = OrganismRow::whereIn('id', $home_row_array)->get();
 
         $display_type = 'atoms'; // default atoms
-
         $rowPresentationType = null;
         for ($i = 0; $i < count($row_structure_rows); $i++) {
 
@@ -57,8 +58,9 @@ class Organismhome extends Model
               $output_string .= "\n";
               $output_string .= "<div class='row'>";
               $output_string .= "\n";
-
-              $output_string .= "" . $organism_row->renderHtml();
+              if (!is_null($organism_row)){
+                $output_string .= "" . $organism_row->renderHtml();
+              }
               $output_string .= "\n";
               $output_string .= '</div>';
               $output_string .= "\n";

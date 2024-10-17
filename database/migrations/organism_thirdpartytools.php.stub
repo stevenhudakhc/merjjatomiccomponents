@@ -8,6 +8,8 @@ return new class extends Migration
 {
     public function up()
     {
+      if (!Schema::hasTable('organism_thirdpartytools')) {
+
         Schema::create('organism_thirdpartytools', function (Blueprint $table) {
             // add fields
             $table->id();
@@ -27,5 +29,14 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+      }
     }
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::drop('organism_thirdpartytools');
+    }
+
 };
