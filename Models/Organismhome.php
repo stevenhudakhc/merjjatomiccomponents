@@ -46,7 +46,6 @@ class Organismhome extends Model
           if(isset($row_structure_rows[$i]['atom_type'])){
             $rowPresentationType = $row_structure_rows[$i]['atom_type'];
             $organism_row = OrganismRow::find($row_structure_rows[$i]['id']);
-            $organism_row->save();
           }
           else{
             $rowPresentationType = $row_structure_rows[$i]['molecule'];
