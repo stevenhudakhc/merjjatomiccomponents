@@ -21,7 +21,6 @@ class Organismhome extends Model
 
     public function renderHtml()
     {
-        //        var_dump($this->structure_json);
 
         $categories = $this;
 
@@ -73,8 +72,8 @@ class Organismhome extends Model
             $output_string .= "\n";
             $output_string .= "   <div class='card-group rounded-0' style=''>";
 
-            for ($i = 0; $i < count($organismThirdpartytools); $i++){
-              $output_string .= "" . $organismThirdpartytools[$i]->renderHtmlCard();
+            for ($j = 0; $j < count($organismThirdpartytools); $j++){
+              $output_string .= "" . $organismThirdpartytools[$j]->renderHtmlCard();
             }
 
             $output_string .= "\n";
