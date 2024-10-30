@@ -59,6 +59,9 @@ class Organismrow extends Model
                 }
                 if ($row_structure->atoms[$i]->atom_type == 'media_image') { // atomic image
                   $media_image_insert = AtomImage::where('id', $row_structure->atoms[$i]->id)->first();
+                  if (isset($row_structure->atoms[$i]->href)) {
+                      $output_string .= "<a href='".$row_structure->atoms[$i]->href."' target='_blank'>";
+                  }
                   if (!is_null($media_image_insert)){//check if AtomImage has been deleted
                     $output_string .= $media_image_insert->renderHtml();
 
@@ -66,6 +69,9 @@ class Organismrow extends Model
                   else{
                     $output_string .= "<img src='https://fpoimg.com/300x300?text=Image%20deleted' title='".$i."' class='img-fluid w-100'/>";
 
+                  }
+                  if (isset($row_structure->atoms[$i]->href)) {
+                      $output_string .= '</a>';
                   }
 //                    $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
                 }
@@ -103,11 +109,11 @@ class Organismrow extends Model
                 $output_string .= "   <div class='carousel-item ".$div_class.' '.$active_class."'>";
                 $output_string .= "\n";
                 if ($row_structure->molecules[$i]->molecule_type == 'slide') { //slide row
-                    if (isset($row_structure->molecules[$i]->href) && false) {
+                    if (isset($row_structure->molecules[$i]->href)) {
                         $output_string .= "<a href='".$row_structure->molecules[$i]->href."' target='_blank'>";
                     }
                     $output_string .= "<img src='".$row_structure->molecules[$i]->src."' title='".$i."' class='bd-placeholder-img bd-placeholder-img-lg d-block w-100'/>";
-                    if (isset($row_structure->molecules[$i]->href) && false) {
+                    if (isset($row_structure->molecules[$i]->href)) {
                         $output_string .= '</a>';
                     }
                     $output_string .= "\n";
