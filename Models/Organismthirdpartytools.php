@@ -87,7 +87,7 @@ class Organismthirdpartytools extends Model
 
     public function atomic_link(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-  		return $this->hasOne(Atomlink::class, 'id', 'atom_link_id');
+  		return $this->hasOne(Atomlink::class, 'id', 'atom_link_id'); // use lowercase names because of Linux
   	}
 
 

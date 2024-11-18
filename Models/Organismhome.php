@@ -36,7 +36,7 @@ class Organismhome extends Model
         for($i = 0; $i < count($row_structure['rows']); $i++){
             $home_row_array[] = $row_structure['rows'][$i]['id'];
         }
-        $organism_rows = OrganismRow::whereIn('id', $home_row_array)->get();
+        $organism_rows = Organismrow::whereIn('id', $home_row_array)->get();// use lowercase names because of Linux
 
         $display_type = 'atoms'; // default atoms
         $rowPresentationType = null;
@@ -44,7 +44,7 @@ class Organismhome extends Model
 
           if(isset($row_structure_rows[$i]['atom_type'])){
             $rowPresentationType = $row_structure_rows[$i]['atom_type'];
-            $organism_row = OrganismRow::find($row_structure_rows[$i]['id']);
+            $organism_row = Organismrow::find($row_structure_rows[$i]['id']);
           }
           else{
             $rowPresentationType = $row_structure_rows[$i]['molecule'];
@@ -67,7 +67,7 @@ class Organismhome extends Model
           }
           elseif ( $rowPresentationType == "organism_thirdpartytools"){
 
-            $organismThirdpartytools = OrganismThirdpartytools::all();
+            $organismThirdpartytools = Organismthirdpartytools::all();// use lowercase names because of Linux
 
             $output_string .= "\n";
             $output_string .= "   <div class='card-group rounded-0' style=''>";
