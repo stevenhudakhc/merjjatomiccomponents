@@ -51,21 +51,21 @@ class Organismrow extends Model
                 }
                 $output_string .= "<div class='col-sm ".$div_class." p-0'>";
                 if ($row_structure->atoms[$i]->atom_type == 'image') { //image row
-                    if (isset($row_structure->atoms[$i]->href)) {
+                    if (isset($row_structure->atoms[$i]->href) && strlen($row_structure->atoms[$i]->href)) {
                         $output_string .= "<a href='".$row_structure->atoms[$i]->href."' target='_blank'>";
                     }
-                    $image_src = "https://fpoimg.com/300x300?text=Image%20deleted'";
+                    $image_src = "https://fpoimg.com/300x300?text=Image%20deleted";
                     if (is_null($row_structure->atoms[$i]->src)){
                       $image_src = $row_structure->atoms[$i]->src;//"https://fpoimg.com/300x300?text=Image%20deleted'";
                     }
                     $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";
-                    if (isset($row_structure->atoms[$i]->href)) {
+                    if (isset($row_structure->atoms[$i]->href) && strlen($row_structure->atoms[$i]->href)) {
                         $output_string .= '</a>';
                     }
                 }
                 if ($row_structure->atoms[$i]->atom_type == 'media_image') { // atomic image
                   $media_image_insert = Atomimage::where('id', $row_structure->atoms[$i]->id)->first();
-                  if (isset($row_structure->atoms[$i]->href)) {
+                  if (isset($row_structure->atoms[$i]->href) && strlen($row_structure->atoms[$i]->href)) {
                       $output_string .= "<a href='".$row_structure->atoms[$i]->href."' target='_blank'>";
                   }
                   if (!is_null($media_image_insert)){//check if AtomImage has been deleted
@@ -76,7 +76,7 @@ class Organismrow extends Model
                     $output_string .= "<img src='https://fpoimg.com/300x300?text=Image%20deleted' title='".$i."' class='img-fluid w-100'/>";
 
                   }
-                  if (isset($row_structure->atoms[$i]->href)) {
+                  if (isset($row_structure->atoms[$i]->href) && strlen($row_structure->atoms[$i]->href)) {
                       $output_string .= '</a>';
                   }
 //                    $output_string .= "<img src='".$row_structure->atoms[$i]->src."' title='".$i."' class='img-fluid w-100'/>";

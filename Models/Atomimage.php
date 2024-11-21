@@ -24,10 +24,14 @@ class Atomimage extends Model
 
         $url_desktop = $this->url_desktop;
         $url_mobile = $this->url_mobile;
+        $title = $this->title;
+        $alt = $this->alt;
         if (isset($url_desktop)){
           $output_string .= '<img ';
           $output_string .= " src='".$url_desktop."' ";
           $output_string .= " class='d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block img-fluid w-100' "; // w-100 added
+          $output_string .= " title='".$title."' ";
+          $output_string .= " alt='".$alt."' ";
           $output_string .= '/>';
         }
 
@@ -37,6 +41,8 @@ class Atomimage extends Model
           $output_string .= '<img ';
           $output_string .= " src='".$url_mobile."' ";
           $output_string .= " class='d-block d-sm-none img-fluid w-100' ";// w-100 added
+          $output_string .= " title='".$title."' ";
+          $output_string .= " alt='".$alt."' ";
           $output_string .= '/>';
         }
 
